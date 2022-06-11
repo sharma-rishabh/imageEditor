@@ -1,7 +1,5 @@
 # Doing
 
-- [ ] Make pixel entity - (color,position)
-
 # TODO
 
 - [ ] Implement another filter
@@ -13,6 +11,8 @@
 
 # DONE
 
+- [x] Make pixel entity - (color,position)
+- [x] Make color entity.
 - [x] Import position entity.
 - [x] Run from main
 - [x] Work on buffer instead of any other image
@@ -23,4 +23,3 @@
 - [x] Verify mocha exists
 - [x] Verify jpeg-js exists
 - [x] Add node_modules into .gitignore
-- [x] Make color entity.
