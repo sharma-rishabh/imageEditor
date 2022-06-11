@@ -1,6 +1,5 @@
 # Doing
 
-- [ ] Make color entity.
 - [ ] Make pixel entity - (color,position)
 
 # TODO
@@ -13,6 +12,7 @@
 # MAYBE
 
 # DONE
+
 - [x] Import position entity.
 - [x] Run from main
 - [x] Work on buffer instead of any other image
@@ -23,3 +23,4 @@
 - [x] Verify mocha exists
 - [x] Verify jpeg-js exists
 - [x] Add node_modules into .gitignore
+- [x] Make color entity.
