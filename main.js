@@ -6,7 +6,7 @@ const writeImage = (path, imageData) => fs.writeFileSync(path, imageData);
 
 const main = () => {
   const image = readImage('./filteredSunrise.jpeg');
-  const filteredImage = filterImage(image, 'yellow');
+  const filteredImage = filterImage(image, 'red');
 
   writeImage('./filteredSunrise1.jpeg', filteredImage.data);
 };

@@ -25,14 +25,19 @@ const partPixels = ({ width, data }) => {
   return pixels;
 };
 
+const applyFilter = (image, filter) => {
+  const pixels = partPixels(image);
+  if (filter === 'cyan') {
+    pixels.forEach(pixel => pixel.unsetBlue());
+  }
+  image.data = pixels.flatMap(pixel => pixel.toArray());
+  return image;
+};
+
 const filterImage = (image) => {
   const decodedImage = jpeg.decode(image);
-  const pixels = partPixels(decodedImage);
-
-  pixels.forEach(pixel => pixel.unsetBlue());
-  decodedImage.data = pixels.flatMap(pixel => pixel.toArray());
-
-  return jpeg.encode(decodedImage);
+  const filteredImage = applyFilter(decodedImage, 'cyan');
+  return jpeg.encode(filteredImage);
 };
 
 module.exports = { filterImage };

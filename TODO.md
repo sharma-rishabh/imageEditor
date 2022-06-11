@@ -1,8 +1,10 @@
 # Doing
+- [ ] Implement `applyFilter`
 
 # TODO
 
-- [ ] Implement `applyFilter`
+- [ ] Implement Image.
+- [ ] Extract `getPosition` from `partPixels`
 - [ ] Remove dependencies.
   - [ ] fs.readFileSync.
   - [ ] fs.writeFileSync.
