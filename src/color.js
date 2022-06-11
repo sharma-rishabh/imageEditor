@@ -22,6 +22,10 @@ class Color {
   unsetBlue() {
     return new Color(this.#red, this.#green, 0, this.#alpha);
   }
+
+  toArray() {
+    return [this.#red, this.#green, this.#blue, this.#alpha];
+  }
 }
 
 module.exports = { Color };

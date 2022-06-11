@@ -1,36 +1,38 @@
 const jpeg = require('jpeg-js');
+const { Color } = require('./color.js');
+const { Pixel } = require('./pixel');
+const { Position } = require('./position');
 
-const decode = (image) => jpeg.decode(image);
-const encode = (decodedImage) => jpeg.encode(decodedImage);
+const calcOrdinate = (index, width) => Math.floor(index / width);
 
-const applyFilter = (decodedImage, filterName) => decodedImage.map(filterName);
+const calcAbscissa = (index, width) => index % width;
 
-const findPosition = (position) => position % 4;
+const partPixels = ({ width, data }) => {
+  const pixels = [];
 
-const isRed = (position) => findPosition(position) === 0;
-const isGreen = (position) => findPosition(position) === 1;
-const isBlue = (position) => findPosition(position) === 2;
+  for (let index = 0; index < data.length; index += 4) {
+    const colorBuffer = data.slice(index, index + 4);
+    const color = new Color(...colorBuffer);
 
-const unsetRed = (pixel, position) => isRed(position) ? 0 : pixel;
-const unsetGreen = (pixel, position) => isGreen(position) ? 0 : pixel;
-const unsetBlue = (pixel, position) => isBlue(position) ? 0 : pixel;
+    const abscissa = calcAbscissa(index, width);
+    const ordinate = calcOrdinate(index, width);
 
-const filters = {
-  cyan: (pixel, position) => unsetRed(pixel, position),
-  magenta: (pixel, position) => unsetGreen(pixel, position),
-  yellow: (pixel, position) => unsetBlue(pixel, position),
-  // red: (pixel, index) => index % 4 === 1 ? 0 : pixel,
+    const position = new Position(abscissa, ordinate);
+
+    pixels.push(new Pixel(color, position));
+  }
+
+  return pixels;
 };
 
-const filterImage = (image, filter) => {
-  const decodedImage = decode(image);
-  decodedImage.data = applyFilter(decodedImage.data, filters[filter]);
+const filterImage = (image) => {
+  const decodedImage = jpeg.decode(image);
+  const pixels = partPixels(decodedImage);
 
-  return encode(decodedImage);
+  pixels.forEach(pixel => pixel.unsetBlue());
+  decodedImage.data = pixels.flatMap(pixel => pixel.toArray());
+
+  return jpeg.encode(decodedImage);
 };
 
 module.exports = { filterImage };
-
-// const pixel = [100, 100, 200, 1];
-
-// const unSetRed = ([r, g, b, a]) => [0, g, b, a];

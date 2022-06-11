@@ -21,6 +21,10 @@ class Pixel {
   distanceFrom(anotherPixel) {
     this.#position.distanceFrom(anotherPixel.#position);
   }
+
+  toArray() {
+    return this.#color.toArray();
+  }
 }
 
 module.exports = { Pixel };

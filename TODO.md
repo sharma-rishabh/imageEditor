@@ -2,6 +2,11 @@
 
 # TODO
 
+- [ ] Implement `applyFilter`
+- [ ] Remove dependencies.
+  - [ ] fs.readFileSync.
+  - [ ] fs.writeFileSync.
+  - [ ] jpeg-js
 - [ ] Implement another filter
 - [ ] Extract a class from all filters
 - [ ] Show user prompt
@@ -9,8 +14,13 @@
 
 # MAYBE
 
+- [ ] Make a image class.
+- [ ] Implement `move` method for pixel
+- [ ] Implement  `mirrorPosition` method for pixel.
+
 # DONE
 
+- [x] Implement partPixel function.
 - [x] Make pixel entity - (color,position)
 - [x] Make color entity.
 - [x] Import position entity.
