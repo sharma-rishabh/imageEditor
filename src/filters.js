@@ -27,16 +27,22 @@ const partPixels = ({ width, data }) => {
 
 const applyFilter = (image, filter) => {
   const pixels = partPixels(image);
+
   if (filter === 'cyan') {
+    pixels.forEach(pixel => pixel.unsetRed());
+  } else if (filter === 'magenta') {
+    pixels.forEach(pixel => pixel.unsetGreen());
+  } else if (filter === 'yellow') {
     pixels.forEach(pixel => pixel.unsetBlue());
   }
+
   image.data = pixels.flatMap(pixel => pixel.toArray());
   return image;
 };
 
 const filterImage = (image) => {
   const decodedImage = jpeg.decode(image);
-  const filteredImage = applyFilter(decodedImage, 'cyan');
+  const filteredImage = applyFilter(decodedImage, 'magenta');
   return jpeg.encode(filteredImage);
 };
 

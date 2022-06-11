@@ -1,5 +1,4 @@
 # Doing
-- [ ] Implement `applyFilter`
 
 # TODO
 
@@ -22,6 +21,7 @@
 
 # DONE
 
+- [x] Implement `applyFilter`
 - [x] Implement partPixel function.
 - [x] Make pixel entity - (color,position)
 - [x] Make color entity.
