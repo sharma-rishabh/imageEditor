@@ -14,9 +14,10 @@ const writeImage = (imageData) =>
 
 describe('filterImage', () => {
   it('Should filter an image', () => {
-    writeImage(filterImage(readImage()));
-    const actual = readGeneratedImage().data;
-    const expected = readFilteredImage().data;
+    writeImage(filterImage(readImage(), 'cyan'));
+
+    const actual = readGeneratedImage();
+    const expected = readFilteredImage();
     assert.deepStrictEqual(actual, expected);
   });
 });
